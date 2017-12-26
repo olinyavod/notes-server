@@ -31,6 +31,7 @@ bower_components
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
+build/src
 
 # Dependency directories
 node_modules/
@@ -52,8 +53,13 @@ typings/
 *.tgz
 
 # Yarn Integrity file
-.yarn-integrity
+.1-integrity
 
 # dotenv environment variables file
 .env
+
+#Visual Studio
+.vs
+
+
 
