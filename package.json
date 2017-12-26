@@ -4,11 +4,13 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "mongodb": "^3.0.1",
     "odata-v4-server": "^0.2.3"
   },
   "devDependencies": {
+    "@types/dotenv": "^4.0.2",
     "@types/express": "^4.11.0",
     "@types/mongodb": "^2.2.18",
     "@types/node": "^8.5.2",
@@ -18,7 +20,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node node_modules/typescript/bin/tsc",
-    "runserver": "node build/src/server.js"
+    "runserver": "node build/src/server/server.js"
   },
   "repository": {
     "type": "git",

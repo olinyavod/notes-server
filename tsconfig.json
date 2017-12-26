@@ -2,8 +2,12 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "build/src",
-    "target": "es5",
-    "rootDir": "src"
+    "target": "es6",
+    "rootDir": "src",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "noUnusedLocals": false,
+    "importHelpers": true
   },
   "include":  ["src/**/*"] 
 }
