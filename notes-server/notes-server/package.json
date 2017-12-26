@@ -17,8 +17,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node node_modules\\typescript\\bin\\tsc",
-    "runserver": "node build\\src\\server.js"
+    "build": "node node_modules/typescript/bin/tsc",
+    "runserver": "node build/src/server.js"
   },
   "repository": {
     "type": "git",
