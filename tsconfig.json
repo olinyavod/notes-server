@@ -1,13 +1,22 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "build/src",
     "target": "es6",
-    "rootDir": "src",
+    "module": "commonjs",
     "declaration": true,
     "experimentalDecorators": true,
+    "outDir": "build",
     "noUnusedLocals": false,
-    "importHelpers": true
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "sourceMap": true,
+    "rootDir": "src"
   },
-  "include":  ["src/**/*"] 
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
 }
