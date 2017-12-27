@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 import { MongoClient } from "mongodb";
 import * as express from "express";
-import NotesServer from "./NotesServer";
+import {NotesServer} from "./NotesServer";
 
 const config = dotenv.config();
 
