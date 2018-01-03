@@ -11,6 +11,7 @@ const DB_URL = process.env.DB_URL;
 const app = express();
 
 app.use("/odata", NotesServer.create());
+app.use(express.static("public/"));
 
 app.listen(PORT,
     () => {

@@ -65,13 +65,64 @@ export class MongoDbCrudProvider<TModel> implements ICrudProvider<TModel, string
         }
     }
 
-    filter(query: ODataQuery): Promise<TModel[]> { throw new Error("Not implemented"); }
+    async filter(query: ODataQuery): Promise<TModel[]> { 
+		const db = await this.connect();
+        try {
+            var mongoQuery = createQuery(query);
+            let result = typeof mongoQuery.limit == "number" && mongoQuery.limit === 0
+                ? []
+                : await db.collection(this.collectionName)
+                .find(mongoQuery.query)
+                .project(mongoQuery.projection)
+                .skip(mongoQuery.skip || 0)
+                .limit(mongoQuery.limit || 0)
+                .sort(mongoQuery.sort)
+                    .toArray();
+            if (mongoQuery.inlinecount) {
+                (result as any).inlinecount = await db.collection(this.collectionName)
+                    .find(mongoQuery.query)
+                    .count(false);
+            }
+            return result;
+            } finally {
+            db.close();
+        }
+	}
 
-    count(query: ODataQuery): Promise<number> { throw new Error("Not implemented"); }
+    async count(query: ODataQuery): Promise<number> { 
+		const db = await this.connect();
+		try{
+			const mongoQuery = createQuery(query);
+			return await db.collection(this.collectionName)
+				.find(mongoQuery.query)
+				.count(false);
+		}finally{
+			db.close();
+		}
+	}
 
-    countAll(): Promise<number> { throw new Error("Not implemented"); }
+   async countAll(): Promise<number> {
+		const db = await this.connect();
+		try{
+			return await db.collection(this.collectionName)
+				.find()
+				.count(false);
+		}finally{
+			db.close();
+		}
+	}
 
-    add(model: TModel): Promise<TModel> { throw new Error("Not implemented"); }
+    add(model: TModel): Promise<TModel> {
+		const db = this.connect();
+		try{
+			return await db.colllection(this.collectionName).insertOne(model).then(r =>{
+				model._id = r.insertedId;
+				return model;
+			});
+		}finally{
+			db.close();
+		}
+	}
 
     update(key: string, model: TModel): Promise<TModel> { throw new Error("Not implemented"); }
 
